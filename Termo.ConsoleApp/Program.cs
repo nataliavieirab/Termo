@@ -2,8 +2,16 @@
 
 class Program
 {
-    static void Main(string[] args)
-    {
-        Console.WriteLine("Hello, World!");
-    }
+  static void Main(string[] args)
+  {
+    ExibirCabecalho();
+  }
+
+  static void ExibirCabecalho()
+  {
+    Console.Clear();
+    Console.WriteLine("===========================================");
+    Console.WriteLine("------------------ TERMO ------------------");
+    Console.WriteLine("===========================================");
+  }
 }
