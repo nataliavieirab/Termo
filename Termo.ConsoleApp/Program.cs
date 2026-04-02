@@ -8,13 +8,22 @@ class Program
   {
     ExibirCabecalho();
 
+    string palavraAleatoria = GerarPalavraAleatoria();
+
+    Console.Write("> ");
+    string? chute = Console.ReadLine()?.ToUpper();
+
   }
 
   static void ExibirCabecalho()
   {
     Console.Clear();
     Console.WriteLine("===========================================");
-    Console.WriteLine("------------------ TERMO ------------------");
+    Console.Write("----------- TERMO ");
+    Console.ForegroundColor = ConsoleColor.DarkGreen;
+    Console.Write("[5 letras] ");
+    Console.ResetColor();
+    Console.WriteLine("--------------");
     Console.WriteLine("===========================================");
   }
 
@@ -48,6 +57,5 @@ class Program
     string palavraAleatoria = palavras[indiceAleatorio];
 
     return palavraAleatoria;
-
   }
 }
