@@ -16,23 +16,7 @@ class Program
       Console.Write("\n> ");
       string? chute = Console.ReadLine()?.ToUpper();
 
-      #region Verificação Input
-      if (string.IsNullOrWhiteSpace(chute) || PossuiCaracteresInvalidos(chute))
-      {
-        Console.WriteLine("\n------------------------------------------------------------");
-        Console.WriteLine("❌  Não utilize espaços em branco, números e/ou caracteres.");
-        Console.WriteLine("------------------------------------------------------------");
-        continue;
-      }
-
-      if (chute.Length != 5)
-      {
-        Console.WriteLine("\n------------------------------------------------------------");
-        Console.WriteLine("⚠️   Ops! Digite uma palavra de 5 letras.");
-        Console.WriteLine("------------------------------------------------------------");
-        continue;
-      }
-      #endregion
+      if (!VerificarInput(chute!)) continue;
 
     }
   }
@@ -91,6 +75,27 @@ class Program
         if (letra == charactere) return true;
 
     return false;
+  }
+
+  static bool VerificarInput(string chute)
+  {
+    if (string.IsNullOrWhiteSpace(chute) || PossuiCaracteresInvalidos(chute))
+    {
+      Console.WriteLine("\n------------------------------------------------------------");
+      Console.WriteLine("❌  Não utilize espaços em branco, números e/ou caracteres.");
+      Console.WriteLine("------------------------------------------------------------");
+      return false;
+    }
+
+    if (chute.Length != 5)
+    {
+      Console.WriteLine("\n------------------------------------------------------------");
+      Console.WriteLine("⚠️   Ops! Digite uma palavra de 5 letras.");
+      Console.WriteLine("------------------------------------------------------------");
+      return false;
+    }
+
+    return true;
   }
 }
 
