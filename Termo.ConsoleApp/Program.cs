@@ -6,7 +6,6 @@ class Program
 {
   static void Main(string[] args)
   {
-
     while (true)
     {
       ExibirCabecalho();
@@ -26,15 +25,7 @@ class Program
 
         if (Acertou(chute!, palavraAleatoria))
         {
-          Console.Write("< ");
-
-          Console.BackgroundColor = ConsoleColor.DarkGreen;
-          Console.ForegroundColor = ConsoleColor.Black;
-          Console.Write(chute);
-          Console.ResetColor();
-
-          Console.ReadLine();
-
+          MensagemDeAcerto(chute!);
           break;
         }
 
@@ -171,5 +162,15 @@ class Program
       return false;
 
     return true;
+  }
+
+  static void MensagemDeAcerto(string chute)
+  {
+    Console.Write("< ");
+    Console.BackgroundColor = ConsoleColor.DarkGreen;
+    Console.ForegroundColor = ConsoleColor.Black;
+    Console.Write(chute);
+    Console.ResetColor();
+    Console.ReadLine();
   }
 }
