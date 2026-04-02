@@ -9,6 +9,7 @@ class Program
     ExibirCabecalho();
 
     string palavraAleatoria = GerarPalavraAleatoria();
+    Console.WriteLine(palavraAleatoria);
 
     while (true)
     {
@@ -16,8 +17,21 @@ class Program
       Console.Write("\n> ");
       string? chute = Console.ReadLine()?.ToUpper();
 
-      if (!VerificarInput(chute!)) continue;
+      if (!VerificarPalavra(chute!)) continue;
 
+      if (Acertou(chute!, palavraAleatoria))
+      {
+        Console.BackgroundColor = ConsoleColor.DarkGreen;
+        Console.ForegroundColor = ConsoleColor.Black;
+        Console.WriteLine($"\n{chute}");
+        Console.ResetColor();
+        Console.ReadLine();
+        return;
+      }
+
+      ClassificarLetras(chute!, palavraAleatoria);
+
+      Console.ReadLine();
     }
   }
   static void ExibirCabecalho()
@@ -36,26 +50,26 @@ class Program
   static string GerarPalavraAleatoria()
   {
     string[] palavras = [
-      "Amigo",
-      "Verde",
-      "Nuvem",
-      "Tigre",
-      "Vento",
-      "Chuva",
-      "Folha",
-      "Praia",
-      "Sabor",
-      "Falar",
-      "Rosto",
-      "Lente",
-      "Canto",
-      "Brisa",
-      "Ferro",
-      "Pequi",
-      "Nobre",
-      "Tocar",
-      "Firme",
-      "Casal"
+      "AMIGO",
+      "VERDE",
+      "NUVEM",
+      "TIGRE",
+      "VENTO",
+      "CHUVA",
+      "FOLHA",
+      "PRAIA",
+      "SABOR",
+      "FALAR",
+      "ROSTO",
+      "LENTE",
+      "CANTO",
+      "BRISA",
+      "FERRO",
+      "PEQUI",
+      "NOBRE",
+      "TOCAR",
+      "FIRME",
+      "CASAL"
     ];
 
     int indiceAleatorio = RandomNumberGenerator.GetInt32(palavras.Length);
@@ -77,7 +91,7 @@ class Program
     return false;
   }
 
-  static bool VerificarInput(string chute)
+  static bool VerificarPalavra(string chute)
   {
     if (string.IsNullOrWhiteSpace(chute) || PossuiCaracteresInvalidos(chute))
     {
@@ -97,5 +111,37 @@ class Program
 
     return true;
   }
-}
 
+  static bool Acertou(string chute, string palavraAleatoria)
+  {
+    if (chute == palavraAleatoria)
+      return true;
+
+    return false;
+  }
+
+  static void ClassificarLetras(string chute, string palavraAleatoria)
+  {
+    for (int posicao = 0; posicao < chute.Length; posicao++)
+    {
+      char letraChute = chute[posicao];
+      char letraPalavra = palavraAleatoria[posicao];
+
+      if (letraChute == letraPalavra)
+      {
+        Console.BackgroundColor = ConsoleColor.DarkGreen;
+      }
+      else if (palavraAleatoria.Contains(letraChute))
+      {
+        Console.BackgroundColor = ConsoleColor.DarkYellow;
+      }
+      else
+      {
+        Console.BackgroundColor = ConsoleColor.DarkRed;
+      }
+
+      Console.Write(letraChute);
+      Console.ResetColor();
+    }
+  }
+}
