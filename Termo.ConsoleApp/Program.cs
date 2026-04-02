@@ -11,27 +11,41 @@ class Program
     string palavraAleatoria = GerarPalavraAleatoria();
     Console.WriteLine(palavraAleatoria);
 
+    int tentativasMaximas = 5;
+
     while (true)
     {
 
-      Console.Write("\n> ");
-      string? chute = Console.ReadLine()?.ToUpper();
-
-      if (!VerificarPalavra(chute!)) continue;
-
-      if (Acertou(chute!, palavraAleatoria))
+      for (int tentativa = tentativasMaximas; tentativa >= 1; tentativa--)
       {
-        Console.BackgroundColor = ConsoleColor.DarkGreen;
-        Console.ForegroundColor = ConsoleColor.Black;
-        Console.WriteLine($"\n{chute}");
-        Console.ResetColor();
-        Console.ReadLine();
-        return;
+        Console.WriteLine();
+        Console.Write("> ");
+        string? chute = Console.ReadLine()?.ToUpper();
+
+        if (!VerificarPalavra(chute!)) continue;
+
+        if (Acertou(chute!, palavraAleatoria))
+        {
+          Console.Write("< ");
+
+          Console.BackgroundColor = ConsoleColor.DarkGreen;
+          Console.ForegroundColor = ConsoleColor.Black;
+          Console.Write(chute);
+          Console.ResetColor();
+
+          Console.ReadLine();
+
+          Console.WriteLine("\n------------------------------------------------------------");
+          Console.WriteLine("🎉  Parabéns, você acertou!!");
+          Console.WriteLine("------------------------------------------------------------");
+
+          return;
+        }
+
+        ClassificarLetras(chute!, palavraAleatoria, tentativa);
+
       }
 
-      ClassificarLetras(chute!, palavraAleatoria);
-
-      Console.ReadLine();
     }
   }
   static void ExibirCabecalho()
@@ -120,8 +134,10 @@ class Program
     return false;
   }
 
-  static void ClassificarLetras(string chute, string palavraAleatoria)
+  static void ClassificarLetras(string chute, string palavraAleatoria, int tentativa)
   {
+    Console.Write("< ");
+
     for (int posicao = 0; posicao < chute.Length; posicao++)
     {
       char letraChute = chute[posicao];
@@ -142,6 +158,12 @@ class Program
 
       Console.Write(letraChute);
       Console.ResetColor();
+
     }
+
+    Console.ForegroundColor = ConsoleColor.DarkRed;
+    Console.Write($" [{tentativa}] tentativas restantes...");
+    Console.ResetColor();
   }
+
 }
