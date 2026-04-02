@@ -6,15 +6,15 @@ class Program
 {
   static void Main(string[] args)
   {
-    ExibirCabecalho();
-
-    string palavraAleatoria = GerarPalavraAleatoria();
-    Console.WriteLine(palavraAleatoria);
-
-    int tentativasMaximas = 5;
 
     while (true)
     {
+      ExibirCabecalho();
+
+      string palavraAleatoria = GerarPalavraAleatoria();
+      Console.WriteLine(palavraAleatoria);
+
+      int tentativasMaximas = 5;
 
       for (int tentativa = tentativasMaximas; tentativa >= 1; tentativa--)
       {
@@ -35,17 +35,14 @@ class Program
 
           Console.ReadLine();
 
-          Console.WriteLine("\n------------------------------------------------------------");
-          Console.WriteLine("🎉  Parabéns, você acertou!!");
-          Console.WriteLine("------------------------------------------------------------");
-
-          return;
+          break;
         }
 
         ClassificarLetras(chute!, palavraAleatoria, tentativa);
-
       }
 
+      if (!TentarNovamente())
+        break;
     }
   }
   static void ExibirCabecalho()
@@ -166,4 +163,13 @@ class Program
     Console.ResetColor();
   }
 
+  static bool TentarNovamente()
+  {
+    Console.Write("\nDeseja jogar novamente? [s/n] --> ");
+
+    if (Console.ReadLine()?.ToUpper() != "S")
+      return false;
+
+    return true;
+  }
 }
