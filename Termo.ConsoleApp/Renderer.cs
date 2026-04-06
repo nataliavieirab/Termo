@@ -34,7 +34,9 @@ static class Renderer
     Console.ForegroundColor = ConsoleColor.Black;
     Console.Write(userGuess);
     Console.ResetColor();
-    Console.WriteLine("\n🎉 Você acertou!");
+    Console.WriteLine();
+    Console.WriteLine("\n🎉 Parabéns! Você acertou!");
+    Console.WriteLine("Digite ENTER para continuar...");
     Console.ReadLine();
   }
 
