@@ -1,5 +1,16 @@
 static class Renderer
 {
+
+  public static void ShowSuccessMessage(string chute)
+  {
+    Console.Write("< ");
+    Console.BackgroundColor = ConsoleColor.DarkGreen;
+    Console.ForegroundColor = ConsoleColor.Black;
+    Console.Write(chute);
+    Console.ResetColor();
+    Console.WriteLine("\n🎉 Você acertou!");
+    Console.ReadLine();
+  }
   public static void Classifier(string chute, string palavraAleatoria, int tentativa)
   {
     Console.Write("< ");
