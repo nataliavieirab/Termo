@@ -22,4 +22,14 @@ static class Game
   }
 
 
+  public static bool AskToPlayAgain()
+  {
+    Console.Write("\nDeseja jogar novamente? [s/n] --> ");
+
+    if (Console.ReadLine()?.ToUpper() != "S")
+      return false;
+    return true;
+  }
+
+
 }
