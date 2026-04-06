@@ -1,7 +1,17 @@
 static class Renderer
 {
-
-  public static void ShowSuccessMessage(string chute)
+  public static void RenderHeader()
+  {
+    Console.Clear();
+    Console.WriteLine("============================================================");
+    Console.Write("--------------------- TERMO ");
+    Console.ForegroundColor = ConsoleColor.DarkGreen;
+    Console.Write("[5 letras] ");
+    Console.ResetColor();
+    Console.WriteLine("---------------------");
+    Console.WriteLine("============================================================");
+  }
+  public static void RenderSuccessMessage(string chute)
   {
     Console.Write("< ");
     Console.BackgroundColor = ConsoleColor.DarkGreen;
@@ -11,7 +21,7 @@ static class Renderer
     Console.WriteLine("\n🎉 Você acertou!");
     Console.ReadLine();
   }
-  public static void Classifier(string chute, string palavraAleatoria, int tentativa)
+  public static void RenderGuess(string chute, string palavraAleatoria, int tentativa)
   {
     Console.Write("< ");
 
