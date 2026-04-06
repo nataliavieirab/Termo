@@ -20,7 +20,11 @@ static class Game
     {
       string userGuess = ReadGuess();
 
-      if (!Validator.IsValid(userGuess)) continue;
+      if (!Validator.IsValid(userGuess))
+      {
+        remainingAttempts++;
+        continue;
+      }
 
       if (userGuess == word)
       {
