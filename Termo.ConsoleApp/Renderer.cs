@@ -23,7 +23,7 @@ static class Renderer
     }
 
     Console.ForegroundColor = ConsoleColor.DarkRed;
-    Console.Write($" [{remainingAttempts}] tentativas restantes...");
+    Console.Write($" [{remainingAttempts - 1}] tentativas restantes...");
     Console.ResetColor();
   }
 
@@ -40,6 +40,16 @@ static class Renderer
     Console.ReadLine();
   }
 
+  public static void RenderGameOverMessage(string word)
+  {
+    Console.WriteLine();
+    Console.WriteLine("\n❌ Suas tentativas acabaram!");
+
+    Console.Write("A palavra era: ");
+    Console.ForegroundColor = ConsoleColor.DarkGreen;
+    Console.WriteLine(word);
+    Console.ResetColor();
+  }
   public static void RenderHeader()
   {
     Console.Clear();

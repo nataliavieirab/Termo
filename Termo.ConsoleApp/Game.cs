@@ -1,4 +1,3 @@
-using System.Runtime.Serialization;
 using System.Security.Cryptography;
 
 static class Game
@@ -35,6 +34,8 @@ static class Game
       Renderer.RenderGuess(userGuess, word, remainingAttempts);
     }
 
+    Renderer.RenderGameOverMessage(word);
+
     return AskToPlayAgain();
   }
 
@@ -52,7 +53,7 @@ static class Game
 
   public static bool AskToPlayAgain()
   {
-    Console.Write("\nDeseja jogar novamente? [s/n] --> ");
+    Console.Write("\nDeseja jogar novamente? [S/N] --> ");
 
     if (Console.ReadLine()?.ToUpper() != "S")
       return false;
