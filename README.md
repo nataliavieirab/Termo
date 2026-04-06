@@ -1,6 +1,8 @@
 # Termo
 
-![](./.docs/termo.gif)
+<p align="center">
+  <img src="./.docs/termo.gif" />
+</p>
 
 ## Projeto
 
