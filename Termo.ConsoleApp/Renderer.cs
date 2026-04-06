@@ -1,5 +1,43 @@
 static class Renderer
 {
+  public static void RenderGuess(string userGuess, string word, int remainingAttempts)
+  {
+    Console.Write("< ");
+
+    for (int position = 0; position < userGuess.Length; position++)
+    {
+      char guessLetter = userGuess[position];
+      char wordLetter = word[position];
+
+      if (guessLetter == wordLetter)
+        Console.BackgroundColor = ConsoleColor.DarkGreen;
+
+      else if (word.Contains(guessLetter))
+        Console.BackgroundColor = ConsoleColor.DarkYellow;
+
+      else
+        Console.BackgroundColor = ConsoleColor.DarkRed;
+
+      Console.Write(guessLetter);
+      Console.ResetColor();
+    }
+
+    Console.ForegroundColor = ConsoleColor.DarkRed;
+    Console.Write($" [{remainingAttempts}] tentativas restantes...");
+    Console.ResetColor();
+  }
+
+  public static void RenderSuccessMessage(string userGuess)
+  {
+    Console.Write("< ");
+    Console.BackgroundColor = ConsoleColor.DarkGreen;
+    Console.ForegroundColor = ConsoleColor.Black;
+    Console.Write(userGuess);
+    Console.ResetColor();
+    Console.WriteLine("\n🎉 Você acertou!");
+    Console.ReadLine();
+  }
+
   public static void RenderHeader()
   {
     Console.Clear();
@@ -10,42 +48,6 @@ static class Renderer
     Console.ResetColor();
     Console.WriteLine("---------------------");
     Console.WriteLine("============================================================");
-  }
-  public static void RenderSuccessMessage(string chute)
-  {
-    Console.Write("< ");
-    Console.BackgroundColor = ConsoleColor.DarkGreen;
-    Console.ForegroundColor = ConsoleColor.Black;
-    Console.Write(chute);
-    Console.ResetColor();
-    Console.WriteLine("\n🎉 Você acertou!");
-    Console.ReadLine();
-  }
-  public static void RenderGuess(string chute, string palavraAleatoria, int tentativa)
-  {
-    Console.Write("< ");
-
-    for (int posicao = 0; posicao < chute.Length; posicao++)
-    {
-      char letraChute = chute[posicao];
-      char letraPalavra = palavraAleatoria[posicao];
-
-      if (letraChute == letraPalavra)
-        Console.BackgroundColor = ConsoleColor.DarkGreen;
-
-      else if (palavraAleatoria.Contains(letraChute))
-        Console.BackgroundColor = ConsoleColor.DarkYellow;
-
-      else
-        Console.BackgroundColor = ConsoleColor.DarkRed;
-
-      Console.Write(letraChute);
-      Console.ResetColor();
-    }
-
-    Console.ForegroundColor = ConsoleColor.DarkRed;
-    Console.Write($" [{tentativa}] tentativas restantes...");
-    Console.ResetColor();
   }
 
 }
