@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using System.Security.Cryptography;
 
 static class Game
@@ -8,6 +9,30 @@ static class Game
     "ROSTO", "LENTE", "CANTO", "BRISA", "FERRO",
     "PEQUI", "NOBRE", "TOCAR", "FIRME", "CASAL"
   ];
+
+  public static bool Start(int maxAttempts)
+  {
+    Renderer.RenderHeader();
+
+    string word = GenerateRandomWord();
+
+    for (int remainingAttempts = maxAttempts; remainingAttempts >= 1; remainingAttempts--)
+    {
+      string userGuess = ReadGuess();
+
+      if (!Validator.IsValid(userGuess)) continue;
+
+      if (userGuess == word)
+      {
+        Renderer.RenderSuccessMessage(userGuess);
+        return AskToPlayAgain();
+      }
+
+      Renderer.RenderGuess(userGuess, word, remainingAttempts);
+    }
+
+    return AskToPlayAgain();
+  }
 
   public static string GenerateRandomWord()
   {
@@ -21,7 +46,6 @@ static class Game
     return Console.ReadLine()!.ToUpper();
   }
 
-
   public static bool AskToPlayAgain()
   {
     Console.Write("\nDeseja jogar novamente? [s/n] --> ");
@@ -30,6 +54,5 @@ static class Game
       return false;
     return true;
   }
-
 
 }
