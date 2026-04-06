@@ -45,7 +45,7 @@ O objetivo é adivinhar uma palavra secreta de 5 letras em até 5 tentativas, co
 4. Para executar o projeto compilando em tempo real
 
    ```bash
-   dotnet run --project TermoPerto.ConsoleApp
+   dotnet run --project Termo.ConsoleApp
    ```
 
 ## Requisitos
