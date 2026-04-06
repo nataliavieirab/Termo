@@ -15,5 +15,11 @@ static class Game
     return words[index];
   }
 
+  public static string ReadGuess()
+  {
+    Console.Write("\n> ");
+    return Console.ReadLine()!.ToUpper();
+  }
+
 
 }
